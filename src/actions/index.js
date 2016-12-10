@@ -5,8 +5,12 @@ import {
   REFRESH_OPERATION_SYMBOL,
   INCREMENT_QUESTION_COUNT,
   REFRESH_RESULT,
-  REFRESH_SUM
+  REFRESH_SUM,
+  REFRESH_OPERAND_LEFT,
+  REFRESH_OPERAND_RIGHT,
+  RESET_SUM_MAP
 } from '../constants/index';
+import { random } from 'lodash';
 
 export function refreshTimerId(timerId) {
   return {
@@ -76,11 +80,32 @@ export function refreshSum(sumMap) {
     payload: sumMap
   };
 }
+
 export function refreshSumMap() {
   return (dispatch, getState) => {
     dispatch(refreshSum({
       questionCount: getState().ui.questionCount,
-      result: getState().ui.result
+      result: [getState().ui.operandLeft, getState().ui.operandRight, Number(getState().ui.result)]
     }));
   }
+}
+
+export function refreshOperandLeft() {
+  return {
+    type: REFRESH_OPERAND_LEFT,
+    payload: { operandLeft: random(0, 9) }
+  };
+}
+
+export function refreshOperandRight() {
+  return {
+    type: REFRESH_OPERAND_RIGHT,
+    payload: { operandRight: random(0, 9) }
+  };
+}
+
+export function resetSumMap() {
+  return {
+    type: RESET_SUM_MAP
+  };
 }

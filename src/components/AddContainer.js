@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { incrementAsync, incrementQuestionCount, refreshResult, refreshSumMap } from '../actions/index';
+import {
+  incrementAsync, incrementQuestionCount, refreshResult, refreshSumMap,
+  refreshOperandLeft, refreshOperandRight, resetSumMap
+} from '../actions/index';
 import AddComponent from './AddComponent'
 
 const mapStateToProps = (state) => {
@@ -10,7 +13,10 @@ const mapStateToProps = (state) => {
     timerId: state.ui.timerId,
     disabled: state.ui.timerId ? true : false,
     operationSymbol: state.ui.operationSymbol,
-    result: state.ui.result
+    result: state.ui.result,
+    operandLeft: state.ui.operandLeft,
+    operandRight: state.ui.operandRight,
+    sumMap: state.sumMap
   };
 };
 
@@ -18,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     asyncTimer: () => {
       dispatch(incrementAsync());
+      dispatch(resetSumMap());
     },
     onBack: () => {
       dispatch(push('/'));
@@ -27,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(incrementQuestionCount());
       dispatch(refreshSumMap());
       dispatch(refreshResult(''));
+      dispatch(refreshOperandLeft());
+      dispatch(refreshOperandRight());
+      // dispatch(resetSumMap());
     },
     onChangeResult: (e) => {
       dispatch(refreshResult(e.target.value));

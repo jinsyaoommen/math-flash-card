@@ -5,7 +5,9 @@ import {
   RESET_TIMER,
   REFRESH_OPERATION_SYMBOL,
   INCREMENT_QUESTION_COUNT,
-  REFRESH_RESULT
+  REFRESH_RESULT,
+  REFRESH_OPERAND_LEFT,
+  REFRESH_OPERAND_RIGHT
 } from '../constants/index';
 
 const initialState = {
@@ -28,7 +30,7 @@ export default function uiReducer(state = initialState, action) {
   }
 
   if (action.type === REFRESH_TIMER_ID) {
-    return { ...state, ...{ timerId: action.payload.timerId } }
+    return { ...state, ...{ timerId: action.payload.timerId } };
   }
 
   if (action.type === STOP_TIMER) {
@@ -46,7 +48,15 @@ export default function uiReducer(state = initialState, action) {
   }
 
   if (action.type === REFRESH_RESULT) {
-    return { ...state, result: action.payload.result }
+    return { ...state, result: action.payload.result };
+  }
+
+  if (action.type === REFRESH_OPERAND_LEFT) {
+    return { ...state, operandLeft: action.payload.operandLeft };
+  }
+
+  if (action.type === REFRESH_OPERAND_RIGHT) {
+    return { ...state, operandRight: action.payload.operandRight };
   }
 
   return state;

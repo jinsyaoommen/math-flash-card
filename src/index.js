@@ -8,7 +8,7 @@ import { Router, hashHistory, Route } from 'react-router';
 import thunk from 'redux-thunk';
 import App from './App';
 import './css/index.css';
-import { refreshOperationSymbol } from './actions/index';
+import { refreshOperationSymbol, refreshOperandLeft, refreshOperandRight } from './actions/index';
 import AddContainer from './components/AddContainer';
 import HomeContainer from './components/HomeContainer';
 
@@ -26,6 +26,8 @@ const history = syncHistoryWithStore(hashHistory, store);
 
 const dispatchAdditionOperation = () => {
   store.dispatch(refreshOperationSymbol('+'));
+  store.dispatch(refreshOperandLeft());
+  store.dispatch(refreshOperandRight())
 };
 
 const routes =

@@ -47,6 +47,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "lodash": "^4.17.2",
     "moment-timer": "^1.1.5",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { random } from 'lodash';
 
 class AddComponent extends Component {
+  componentDidUpdate() {
+    this.refs.resultValue.focus();
+  }
+
   render() {
     const {
-      asyncTimer, timer, disabled, onBack, onSubmit, operationSymbol
+      asyncTimer, timer, disabled, onBack, onSubmit, operationSymbol, onChangeResult, result
     } = { ...this.props };
 
     const countDown = timer <= 59 ? timer : 'Time\'s Up!';
@@ -28,15 +33,15 @@ class AddComponent extends Component {
       </div>
       <div className="row pad-top">
         <div className="col-sm-10 pad-top">
-          <form className="form-inline">
-            <div className="form-group pad-right"> {Math.floor(Math.random() * (10))} </div>
+          <form className="form-inline" onSubmit={(e) => onSubmit(e)}>
+            <div className="form-group pad-right"> {random(0, 9)} </div>
             <div className="form-group pad-right"> {operationSymbol} </div>
             <div className="form-group pad-right"> 5 </div>
             <div className="form-group pad-right"> = </div>
             <div className="form-group pad-right">
-              <input type="text" className="form-control-sm" id="result" placeholder="Answer" />
+              <input autoFocus={true} ref="resultValue" type="text" className="form-control-sm" id="result" value={result} onChange={onChangeResult} />
             </div>
-            <button type="button" className="btn btn-sm btn-warning" disabled={!disabled} onClick={onSubmit}>Submit</button>
+            <button type="submit" className="btn btn-sm btn-warning" disabled={!disabled}>Submit</button>
           </form>
         </div>
       </div>

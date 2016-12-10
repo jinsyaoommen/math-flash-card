@@ -10,7 +10,8 @@ import {
 
 const initialState = {
   timer: 0,
-  questionCount: 0
+  questionCount: 0,
+  result: ''
 };
 
 export default function uiReducer(state = initialState, action) {

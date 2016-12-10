@@ -4,7 +4,8 @@ import {
   RESET_TIMER,
   REFRESH_OPERATION_SYMBOL,
   INCREMENT_QUESTION_COUNT,
-  REFRESH_RESULT
+  REFRESH_RESULT,
+  REFRESH_SUM
 } from '../constants/index';
 
 export function refreshTimerId(timerId) {
@@ -46,7 +47,6 @@ export function incrementAsync() {
       },
       1000
     );
-
   };
 }
 
@@ -68,4 +68,19 @@ export function refreshResult(value) {
     type: REFRESH_RESULT,
     payload: { result: value }
   };
+}
+
+export function refreshSum(sumMap) {
+  return {
+    type: REFRESH_SUM,
+    payload: sumMap
+  };
+}
+export function refreshSumMap() {
+  return (dispatch, getState) => {
+    dispatch(refreshSum({
+      questionCount: getState().ui.questionCount,
+      result: getState().ui.result
+    }));
+  }
 }

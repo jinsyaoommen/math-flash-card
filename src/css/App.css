@@ -58,3 +58,8 @@ body {
 .pad-top-5 {
   padding-top: 5px;
 }
+
+.result-card-style {
+  background-color: #333;
+  border-color: #333;
+}

@@ -36,7 +36,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(refreshResult(''));
       dispatch(refreshOperandLeft());
       dispatch(refreshOperandRight());
-      // dispatch(resetSumMap());
     },
     onChangeResult: (e) => {
       dispatch(refreshResult(e.target.value));

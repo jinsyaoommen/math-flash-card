@@ -15,13 +15,16 @@ class AddComponent extends Component {
     } = { ...this.props };
     const countDown = timer <= 59 ? timer : 'Time\'s Up!';
 
-    if (timer !== 0) {
-      calcDisplay = map(sumMap, (sum, key) => {
-        return (<p key={key}>{`${key}) `} {sum[0]} {operationSymbol} {sum[1]} = {sum[0] + sum[1] === sum[2] ? sum[2] : (<span><del className="text-danger">{sum[2]}</del> {sum[0] + sum[1]}</span>)}</p>);
-      });
-    } else {
-      calcDisplay = ''
-    }
+    calcDisplay = map(sumMap, (sum, key) => {
+      const resultDisplay = sum[0] + sum[1] === sum[2]
+        ? sum[2]
+        : (<span><del className="text-danger">{sum[2]}</del> {sum[0] + sum[1]}</span>);
+      return (
+        <a href="#" key={key} className="list-group-item list-group-item-action list-group-item-info">
+          {`${key}) `} {sum[0]} {operationSymbol} {sum[1]} = {resultDisplay}
+        </a>
+      );
+    });
 
     return (
     <div>
@@ -34,20 +37,32 @@ class AddComponent extends Component {
         </div>
       </div>
       <div className="row pad-top pad-bottom">
-        <div className="col-sm-2">
+        <div className="col-sm-1">
           <button className="btn btn-primary" disabled={disabled} onClick={asyncTimer}>
             Start Timer
           </button>
-        </div>
+          </div>
         <div className="col-sm-10 pad-top-5"><h4><span className="tag tag-danger align-middle">{countDown}</span></h4></div>
       </div>
       <div className="row pad-top">
         <div className="col-sm-6 pad-top">
           <form className="form-inline" onSubmit={(e) => onSubmit(e)}>
-            <div className="form-group pad-right">{operandLeft}</div>
-            <div className="form-group pad-right">{operationSymbol}</div>
-            <div className="form-group pad-right">{operandRight}</div>
-            <div className="form-group pad-right"> = </div>
+            <div className="form-group pad-right">
+              <div className="card card-inverse card-warning text-sm-center">
+                <div className="card-block">
+                  <h1>{operandLeft}</h1>
+                </div>
+              </div>
+            </div>
+            <div className="form-group pad-right"><h1>{operationSymbol}</h1></div>
+            <div className="form-group pad-right">
+              <div className="card card-inverse card-warning text-sm-center">
+                <div className="card-block">
+                  <h1>{operandRight}</h1>
+                </div>
+              </div>
+            </div>
+            <div className="form-group pad-right"> <h1>=</h1> </div>
             <div className="form-group pad-right">
               <input autoFocus={true} ref="resultValue" type="text" className="form-control-sm" id="result" value={result} onChange={onChangeResult} />
             </div>
@@ -56,8 +71,12 @@ class AddComponent extends Component {
         </div>
       </div>
       <div className="row pad-top">
-        <div className="col-sm-6">
-          {calcDisplay}
+        <hr />
+        <div className="col-sm-10">
+          <br />
+          <div className="list-group">
+            {calcDisplay}
+          </div>
         </div>
       </div>
     </div>

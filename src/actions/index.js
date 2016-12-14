@@ -90,17 +90,25 @@ export function refreshSumMap() {
   }
 }
 
-export function refreshOperandLeft() {
+export function refreshInput(input, payloadInput) {
   return {
-    type: REFRESH_OPERAND_LEFT,
-    payload: { operandLeft: random(0, 9) }
+    type: input,
+    payload: payloadInput
+  }
+}
+
+export function refreshOperandLeft() {
+  return (dispatch, getState) => {
+    dispatch(refreshInput(REFRESH_OPERAND_LEFT, { operandLeft: random(0, 9) }));
   };
 }
 
 export function refreshOperandRight() {
-  return {
-    type: REFRESH_OPERAND_RIGHT,
-    payload: { operandRight: random(0, 9) }
+  return (dispatch, getState) => {
+    dispatch(refreshInput(
+      REFRESH_OPERAND_RIGHT,
+      { operandRight: random(0, (10 - getState().ui.operandLeft)) }
+    ));
   };
 }
 

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import {
-  incrementAsync, incrementQuestionCount, refreshResult, refreshSumMap,
-  refreshOperandLeft, refreshOperandRight, resetSumMap
+  incrementAsync, incrementQuestionCount, refreshResult, refreshDiffMap,
+  refreshOperandLeft, refreshOperandRight, resetDiffMap
 } from '../actions/index';
 import DiffComponent from './DiffComponent'
 
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
     result: state.ui.result,
     operandLeft: state.ui.operandLeft,
     operandRight: state.ui.operandRight,
-    sumMap: state.sumMap
+    diffMap: state.diffMap
   };
 };
 
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     asyncTimer: () => {
       dispatch(incrementAsync());
-      dispatch(resetSumMap());
+      dispatch(resetDiffMap());
     },
     onBack: () => {
       dispatch(push('/'));
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     onSubmit: (e) => {
       e.preventDefault()
       dispatch(incrementQuestionCount());
-      dispatch(refreshSumMap());
+      dispatch(refreshDiffMap());
       dispatch(refreshResult(''));
       dispatch(refreshOperandLeft());
       dispatch(refreshOperandRight());

@@ -8,7 +8,9 @@ import {
   REFRESH_SUM,
   REFRESH_OPERAND_LEFT,
   REFRESH_OPERAND_RIGHT,
-  RESET_SUM_MAP
+  RESET_SUM_MAP,
+  REFRESH_DIFFERENCE,
+  RESET_DIFF_MAP
 } from '../constants/index';
 import { random } from 'lodash';
 
@@ -90,6 +92,22 @@ export function refreshSumMap() {
   }
 }
 
+export function refreshDiff(diffMap) {
+  return {
+    type: REFRESH_DIFFERENCE,
+    payload: diffMap
+  };
+}
+
+export function refreshDiffMap() {
+  return (dispatch, getState) => {
+    dispatch(refreshDiff({
+      questionCount: getState().ui.questionCount,
+      result: [getState().ui.operandLeft, getState().ui.operandRight, Number(getState().ui.result)]
+    }));
+  }
+}
+
 export function refreshInput(input, payloadInput) {
   return {
     type: input,
@@ -116,4 +134,10 @@ export function resetSumMap() {
   return {
     type: RESET_SUM_MAP
   };
+}
+
+export function resetDiffMap() {
+  return {
+    type: RESET_DIFF_MAP
+  }
 }

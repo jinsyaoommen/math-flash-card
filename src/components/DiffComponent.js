@@ -8,20 +8,20 @@ class DiffComponent extends Component {
 
     const {
       asyncTimer, timer, disabled, onBack, onSubmit, operationSymbol, onChangeResult, result,
-      operandLeft, operandRight, sumMap
+      operandLeft, operandRight, diffMap
     } = { ...this.props };
 
     const title = 'Subtraction';
 
     const countDown = timer <= 59 ? timer : 'Time\'s Up!';
 
-    calcDisplay = map(sumMap, (sum, key) => {
-      const resultDisplay = sum[0] - sum[1] === sum[2]
-        ? sum[2]
-        : (<span><del className="text-danger">{sum[2]}</del> {sum[0] - sum[1]}</span>);
+    calcDisplay = map(diffMap, (diff, key) => {
+      const resultDisplay = diff[0] - diff[1] === diff[2]
+        ? diff[2]
+        : (<span><del className="text-danger">{diff[2]}</del> {diff[0] - diff[1]}</span>);
       return (
         <a href="#" key={key} className="list-group-item list-group-item-action list-group-item-info">
-          {`${key}) `} {sum[0]} {operationSymbol} {sum[1]} = {resultDisplay}
+          {`${key}) `} {diff[0]} {operationSymbol} {diff[1]} = {resultDisplay}
         </a>
       );
     });

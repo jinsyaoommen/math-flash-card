@@ -10,6 +10,7 @@ import App from './App';
 import './css/index.css';
 import { refreshOperationSymbol, refreshOperandLeft, refreshOperandRight } from './actions/index';
 import AddContainer from './components/AddContainer';
+import DiffContainer from './components/DiffContainer';
 import HomeContainer from './components/HomeContainer';
 
 const reducer = combineReducers(reducers);
@@ -30,10 +31,17 @@ const dispatchAdditionOperation = () => {
   store.dispatch(refreshOperandRight())
 };
 
+const dispatchSubtractionOperation = () => {
+  store.dispatch(refreshOperationSymbol('-'));
+  store.dispatch(refreshOperandLeft());
+  store.dispatch(refreshOperandRight())
+};
+
 const routes =
   <Route path="" component={App}>
     <Route path="/" component={HomeContainer}/>
     <Route path="/add" onEnter={dispatchAdditionOperation} component={AddContainer}/>
+    <Route path="/sub" onEnter={dispatchSubtractionOperation} component={DiffContainer}/>
   </Route>;
 
 render(

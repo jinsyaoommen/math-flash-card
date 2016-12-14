@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { map } from 'lodash';
 import CalcFormComponent from './CalcFormComponent';
 
-class AddComponent extends Component {
-
-
+class DiffComponent extends Component {
   render() {
     let calcDisplay;
 
@@ -13,14 +11,14 @@ class AddComponent extends Component {
       operandLeft, operandRight, sumMap
     } = { ...this.props };
 
-    const title = 'Addition';
+    const title = 'Subtraction';
 
     const countDown = timer <= 59 ? timer : 'Time\'s Up!';
 
     calcDisplay = map(sumMap, (sum, key) => {
-      const resultDisplay = sum[0] + sum[1] === sum[2]
+      const resultDisplay = sum[0] - sum[1] === sum[2]
         ? sum[2]
-        : (<span><del className="text-danger">{sum[2]}</del> {sum[0] + sum[1]}</span>);
+        : (<span><del className="text-danger">{sum[2]}</del> {sum[0] - sum[1]}</span>);
       return (
         <a href="#" key={key} className="list-group-item list-group-item-action list-group-item-info">
           {`${key}) `} {sum[0]} {operationSymbol} {sum[1]} = {resultDisplay}
@@ -47,4 +45,4 @@ class AddComponent extends Component {
   }
 }
 
-export default AddComponent;
+export default DiffComponent;

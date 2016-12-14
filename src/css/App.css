@@ -59,9 +59,8 @@ body {
   padding-top: 5px;
 }
 
-.result-card-style {
-  background-color: #333;
-  border-color: #333;
+.card-style {
+  color: #f5f5f5 !important;
 }
 
 .result-form-80 {

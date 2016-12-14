@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(refreshOperationSymbol('+'));
     },
     onSub: () => {
-      console.log('subtraction');
+      dispatch(push('/sub'));
+      dispatch(refreshOperationSymbol('-'));
     },
     onMult: () => {
       console.log('multiplication');

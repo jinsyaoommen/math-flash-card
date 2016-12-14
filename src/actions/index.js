@@ -98,7 +98,7 @@ export function refreshInput(input, payloadInput) {
 }
 
 export function refreshOperandLeft() {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(refreshInput(REFRESH_OPERAND_LEFT, { operandLeft: random(0, 9) }));
   };
 }

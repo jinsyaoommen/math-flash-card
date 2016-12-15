@@ -121,11 +121,15 @@ export function refreshOperandLeft() {
   };
 }
 
-export function refreshOperandRight() {
+export function refreshOperandRight(type = null) {
   return (dispatch, getState) => {
+    let limit = 10 - getState().ui.operandLeft;
+    if (type === 'diff') {
+      limit = getState().ui.operandLeft;
+    }
     dispatch(refreshInput(
       REFRESH_OPERAND_RIGHT,
-      { operandRight: random(0, (10 - getState().ui.operandLeft)) }
+      { operandRight: random(0, limit) }
     ));
   };
 }

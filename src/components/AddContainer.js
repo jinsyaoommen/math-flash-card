@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import {
   incrementAsync, incrementQuestionCount, refreshResult, refreshSumMap,
-  refreshOperandLeft, refreshOperandRight, resetSumMap
+  refreshOperandLeft, refreshOperandRight, resetSumMap, resetQuestionCount
 } from '../actions/index';
 import AddComponent from './AddComponent'
 
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     asyncTimer: () => {
       dispatch(incrementAsync());
       dispatch(resetSumMap());
+      dispatch(resetQuestionCount());
     },
     onBack: () => {
       dispatch(push('/'));

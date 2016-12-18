@@ -7,7 +7,8 @@ import {
   INCREMENT_QUESTION_COUNT,
   REFRESH_RESULT,
   REFRESH_OPERAND_LEFT,
-  REFRESH_OPERAND_RIGHT
+  REFRESH_OPERAND_RIGHT,
+  RESET_QUESTION_COUNT
 } from '../constants/index';
 
 const initialState = {
@@ -57,6 +58,12 @@ export default function uiReducer(state = initialState, action) {
 
   if (action.type === REFRESH_OPERAND_RIGHT) {
     return { ...state, operandRight: action.payload.operandRight };
+  }
+
+  if (action.type === RESET_QUESTION_COUNT) {
+    return Object.assign({}, state, {
+      questionCount: 0
+    });
   }
 
   return state;

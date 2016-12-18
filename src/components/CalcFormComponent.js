@@ -55,6 +55,19 @@ class CalcFormComponent extends Component {
               <button type="submit" className="btn btn-sm btn-warning" disabled={!disabled}>Submit</button>
             </form>
           </div>
+          <div className="col-md-4 pad-top">
+            {
+              countDown === 'Time\'s Up!' ?
+              (
+                <div className="card card-inverse card-info text-sm-center">
+                  <div className="card-block card-style">
+                    <h1>Your Score</h1>
+                  </div>
+                </div>
+              ) :
+              <span></span>
+            }
+          </div>
         </div>
         <div className="row pad-top">
           <hr />

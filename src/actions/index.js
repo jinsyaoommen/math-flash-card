@@ -10,7 +10,8 @@ import {
   REFRESH_OPERAND_RIGHT,
   RESET_SUM_MAP,
   REFRESH_DIFFERENCE,
-  RESET_DIFF_MAP
+  RESET_DIFF_MAP,
+  RESET_QUESTION_COUNT
 } from '../constants/index';
 import { random } from 'lodash';
 
@@ -145,3 +146,9 @@ export function resetDiffMap() {
     type: RESET_DIFF_MAP
   }
 }
+
+export function resetQuestionCount() {
+  return {
+    type: RESET_QUESTION_COUNT
+  }
+};

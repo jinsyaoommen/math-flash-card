@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import {
   incrementAsync, incrementQuestionCount, refreshResult, refreshDiffMap,
-  refreshOperandLeft, refreshOperandRight, resetDiffMap
+  refreshOperandLeft, refreshOperandRight, resetDiffMap, resetQuestionCount
 } from '../actions/index';
 import DiffComponent from './DiffComponent'
 
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     asyncTimer: () => {
       dispatch(incrementAsync());
       dispatch(resetDiffMap());
+      dispatch(resetQuestionCount());
     },
     onBack: () => {
       dispatch(push('/'));

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toArray } from 'lodash';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import {
@@ -8,6 +9,13 @@ import {
 import AddComponent from './AddComponent'
 
 const mapStateToProps = (state) => {
+  const score = toArray(state.sumMap).reduce((n, sum) => {
+    if (Number(sum[0]) + Number(sum[1]) === Number(sum[2])) {
+      return n + 1;
+    }
+    return n;
+  }, 0);
+
   return {
     timer: state.ui.timer,
     timerId: state.ui.timerId,
@@ -16,7 +24,9 @@ const mapStateToProps = (state) => {
     result: state.ui.result,
     operandLeft: state.ui.operandLeft,
     operandRight: state.ui.operandRight,
-    sumMap: state.sumMap
+    sumMap: state.sumMap,
+    questionCount: state.ui.questionCount,
+    score: score
   };
 };
 

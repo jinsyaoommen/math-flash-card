@@ -35,8 +35,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-        <h2>Facts</h2>
-        <div className="row col-md-12">
+        <div className="row col-md-12 pad-top">
           <div className="pad-bottom pad-top pad-left col-sm-12">
             <HomeComponent {...this.props} />
           </div>

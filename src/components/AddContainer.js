@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import { toArray } from 'lodash';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import {
   incrementAsync, incrementQuestionCount, refreshResult, refreshSumMap,
   refreshOperandLeft, refreshOperandRight, resetSumMap, resetQuestionCount
 } from '../actions/index';
+import { scoreCalculator } from '../util/scoreCalculator';
 import AddComponent from './AddComponent'
 
 const mapStateToProps = (state) => {
-  const score = toArray(state.sumMap).reduce((n, sum) => {
-    if (Number(sum[0]) + Number(sum[1]) === Number(sum[2])) {
-      return n + 1;
-    }
-    return n;
-  }, 0);
+  const score = scoreCalculator(state.sumMap, 'sum');
 
   return {
     timer: state.ui.timer,

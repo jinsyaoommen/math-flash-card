@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(refreshDiffMap());
       dispatch(refreshResult(''));
       dispatch(refreshOperandLeft());
-      dispatch(refreshOperandRight('diff'));
+      dispatch(refreshOperandRight());
     },
     onChangeResult: (e) => {
       dispatch(refreshResult(e.target.value));

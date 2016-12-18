@@ -122,10 +122,11 @@ export function refreshOperandLeft() {
   };
 }
 
-export function refreshOperandRight(type = null) {
+export function refreshOperandRight() {
   return (dispatch, getState) => {
     let limit = 10 - getState().ui.operandLeft;
-    if (type === 'diff') {
+    console.log(getState().ui.operationSymbol);
+    if (getState().ui.operationSymbol === '-') {
       limit = getState().ui.operandLeft;
     }
     dispatch(refreshInput(

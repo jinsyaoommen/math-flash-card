@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { refreshOperationSymbol } from '../actions/index';
-import HomeComponent from './HomeComponent'
+import { refreshOperationSymbol, resetTimer, resetSumMap, resetDiffMap } from '../actions/index';
+import HomeComponent from './HomeComponent';
 
 const mapStateToProps = (state) => {
   return {
@@ -17,16 +17,22 @@ const mapDispatchToProps = (dispatch) => {
     onAdd: () => {
       dispatch(push('/add'));
       dispatch(refreshOperationSymbol('+'));
+      dispatch(resetTimer());
+      dispatch(resetSumMap());
     },
     onSub: () => {
       dispatch(push('/sub'));
       dispatch(refreshOperationSymbol('-'));
+      dispatch(resetTimer());
+      dispatch(resetDiffMap());
     },
     onMult: () => {
       console.log('multiplication');
+      dispatch(resetTimer());
     },
     onDiv: () => {
       console.log('division');
+      dispatch(resetTimer());
     }
   }
 };

@@ -9,7 +9,7 @@ class CalcFormComponent extends Component {
 
     const {
       asyncTimer, disabled, onBack, onSubmit, operationSymbol, onChangeResult, result,
-      operandLeft, operandRight, calcDisplay, countDown, title
+      operandLeft, operandRight, calcDisplay, countDown, title, questionCount, score
     } = { ...this.props };
 
     return (
@@ -61,7 +61,7 @@ class CalcFormComponent extends Component {
               (
                 <div className="card card-inverse card-info text-sm-center">
                   <div className="card-block card-style">
-                    <h1>Your Score</h1>
+                    <h1>Your Score: {score}/{questionCount}</h1>
                   </div>
                 </div>
               ) :

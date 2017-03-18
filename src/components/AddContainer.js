@@ -5,9 +5,12 @@ import {
   incrementAsync, incrementQuestionCount, refreshResult, refreshSumMap,
   refreshOperandLeft, refreshOperandRight, resetSumMap, resetQuestionCount
 } from '../actions/index';
+import { scoreCalculator } from '../util/scoreCalculator';
 import AddComponent from './AddComponent'
 
 const mapStateToProps = (state) => {
+  const score = scoreCalculator(state.sumMap, 'sum');
+
   return {
     timer: state.ui.timer,
     timerId: state.ui.timerId,
@@ -16,7 +19,9 @@ const mapStateToProps = (state) => {
     result: state.ui.result,
     operandLeft: state.ui.operandLeft,
     operandRight: state.ui.operandRight,
-    sumMap: state.sumMap
+    sumMap: state.sumMap,
+    questionCount: state.ui.questionCount,
+    score: score
   };
 };
 

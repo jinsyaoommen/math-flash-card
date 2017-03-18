@@ -10,7 +10,7 @@ class AddComponent extends Component {
 
     const {
       asyncTimer, timer, disabled, onBack, onSubmit, operationSymbol, onChangeResult, result,
-      operandLeft, operandRight, sumMap
+      operandLeft, operandRight, sumMap, questionCount, score
     } = { ...this.props };
 
     const title = 'Addition';
@@ -42,6 +42,8 @@ class AddComponent extends Component {
         operandRight={operandRight}
         calcDisplay={calcDisplay}
         title={title}
+        questionCount={questionCount}
+        score={score}
       />
     );
   }

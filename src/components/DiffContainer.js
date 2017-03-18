@@ -5,9 +5,12 @@ import {
   incrementAsync, incrementQuestionCount, refreshResult, refreshDiffMap,
   refreshOperandLeft, refreshOperandRight, resetDiffMap, resetQuestionCount
 } from '../actions/index';
+import { scoreCalculator } from '../util/scoreCalculator';
 import DiffComponent from './DiffComponent'
 
 const mapStateToProps = (state) => {
+  const score = scoreCalculator(state.diffMap, 'diff');
+
   return {
     timer: state.ui.timer,
     timerId: state.ui.timerId,
@@ -16,7 +19,9 @@ const mapStateToProps = (state) => {
     result: state.ui.result,
     operandLeft: state.ui.operandLeft,
     operandRight: state.ui.operandRight,
-    diffMap: state.diffMap
+    diffMap: state.diffMap,
+    questionCount: state.ui.questionCount,
+    score: score
   };
 };
 
@@ -31,12 +36,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(push('/'));
     },
     onSubmit: (e) => {
-      e.preventDefault()
+      e.preventDefault();
       dispatch(incrementQuestionCount());
       dispatch(refreshDiffMap());
       dispatch(refreshResult(''));
       dispatch(refreshOperandLeft());
-      dispatch(refreshOperandRight('diff'));
+      dispatch(refreshOperandRight());
     },
     onChangeResult: (e) => {
       dispatch(refreshResult(e.target.value));

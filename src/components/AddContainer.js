@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(push('/'));
     },
     onSubmit: (e) => {
-      e.preventDefault()
+      e.preventDefault();
       dispatch(incrementQuestionCount());
       dispatch(refreshSumMap());
       dispatch(refreshResult(''));

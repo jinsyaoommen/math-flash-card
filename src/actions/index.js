@@ -118,13 +118,13 @@ export function refreshInput(input, payloadInput) {
 
 export function refreshOperandLeft() {
   return (dispatch) => {
-    dispatch(refreshInput(REFRESH_OPERAND_LEFT, { operandLeft: random(0, 9) }));
+    dispatch(refreshInput(REFRESH_OPERAND_LEFT, { operandLeft: random(0, 19) }));
   };
 }
 
 export function refreshOperandRight(type = null) {
   return (dispatch, getState) => {
-    let limit = 10 - getState().ui.operandLeft;
+    let limit = 20 - getState().ui.operandLeft;
     if (type === 'diff') {
       limit = getState().ui.operandLeft;
     }
